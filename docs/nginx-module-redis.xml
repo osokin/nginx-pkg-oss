@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!DOCTYPE change_log SYSTEM "changes.dtd" >
+
+
+<change_log title="nginx_module_redis">
+
+
+<changes apply="nginx-module-redis" ver="0.4.1" rev="1" basever="1.29.6"
+         date="2026-03-17" time="12:00:00 -0500"
+         packager="Sergey A. Osokin &lt;osa@FreeBSD.org&gt;">
+
+<change>
+<para>
+Initial release of ngx_http_redis module package.
+</para>
+</change>
+
+</changes>
+
+
+</change_log>
