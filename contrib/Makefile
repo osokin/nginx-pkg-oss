@@ -10,8 +10,8 @@ PREFIX := $(abspath $(PREFIX))
 PKGS_ALL := $(patsubst $(SRC)/%/Makefile,%,$(wildcard $(SRC)/*/Makefile))
 
 # Common download locations
-NGINX := https://nginx.org/download
-CONTRIB_NGINX ?= https://packages.nginx.org/contrib
+NGINX := https://freenginx.org/download
+CONTRIB_NGINX ?= https://packages.freenginx.org/contrib
 GITHUB := https://github.com
 
 #

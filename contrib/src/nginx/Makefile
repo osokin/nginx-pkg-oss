@@ -1,16 +1,16 @@
 # nginx
 
 include $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/version
-NGINX_URL := $(NGINX)/nginx-$(NGINX_VERSION).tar.gz
+NGINX_URL := $(NGINX)/freenginx-$(NGINX_VERSION).tar.gz
 
 PKGS += nginx
 
-$(TARBALLS)/nginx-$(NGINX_VERSION).tar.gz:
+$(TARBALLS)/freenginx-$(NGINX_VERSION).tar.gz:
 	$(call download_pkg,$(NGINX_URL),nginx)
 
-.sum-nginx: nginx-$(NGINX_VERSION).tar.gz
+.sum-nginx: freenginx-$(NGINX_VERSION).tar.gz
 
-nginx: nginx-$(NGINX_VERSION).tar.gz .sum-nginx
+nginx: freenginx-$(NGINX_VERSION).tar.gz .sum-nginx
 	$(UNPACK)
 	$(MOVE)
 

@@ -3,7 +3,7 @@ X:stylesheet {
 X:output method="text";
 
 X:param format="'generic'";
-X:param pkgname="'nginx'";
+X:param pkgname="'freenginx'";
 X:param versionmask="'0'";
 X:param configuration="'change_log_conf.xml'";
 
@@ -74,16 +74,16 @@ X:template = "changes" {
 
     X:var ver_t = {
         X:choose {
-            X:when "position()=1 and $versionmask='1' and $pkgname='nginx'" {%%BASE_VERSION%%}
-            X:when "position()=1 and $versionmask='1' and $pkgname!='nginx'" {%%MODULE_VERSION%%}
+            X:when "position()=1 and $versionmask='1' and $pkgname='freenginx'" {%%BASE_VERSION%%}
+            X:when "position()=1 and $versionmask='1' and $pkgname!='freenginx'" {%%MODULE_VERSION%%}
             X:otherwise { !{@ver} }
         }
     }
 
     X:var rev_t = {
         X:choose {
-            X:when "position()=1 and $versionmask='1' and $pkgname='nginx'" {%%BASE_RELEASE%%}
-            X:when "position()=1 and $versionmask='1' and $pkgname!='nginx'" {%%MODULE_RELEASE%%}
+            X:when "position()=1 and $versionmask='1' and $pkgname='freenginx'" {%%BASE_RELEASE%%}
+            X:when "position()=1 and $versionmask='1' and $pkgname!='freenginx'" {%%MODULE_RELEASE%%}
             X:otherwise { !{@rev} }
         }
     }
@@ -101,7 +101,7 @@ X:template = "changes" {
     }
 
     X:choose {
-    X:when "$pkgname='nginx' and $format='generic' and @rev!=1" {}
+    X:when "$pkgname='freenginx' and $format='generic' and @rev!=1" {}
     X:otherwise {
     X:if "$apply=$pkgname" {
 

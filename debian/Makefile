@@ -20,8 +20,8 @@ BASE_VERSION=	$(NGINX_VERSION)
 BASE_RELEASE=	1
 PLUS_VERSION=	$(NGINX_PLUS_VERSION)
 PLUS_RELEASE=	1
-BASE_SRC=	nginx$(BASE_SUFFIX)-$(BASE_VERSION).tar.gz
-SRCDIR=		nginx$(BASE_SUFFIX)-$(BASE_VERSION)
+BASE_SRC=	freenginx$(BASE_SUFFIX)-$(BASE_VERSION).tar.gz
+SRCDIR=		freenginx$(BASE_SUFFIX)-$(BASE_VERSION)
 BUILD_ENV_PATH=	${HOME}/debuild
 
 ifeq ($(MODULE_TARGET), plus)
@@ -33,14 +33,14 @@ MODULE_PACKAGE_URL=	https://www.nginx.com/
 else
 MODULE_SUMMARY_PREFIX=nginx
 TARGET_VERSION=$(BASE_VERSION)
-BASE_ORIG_NAME=nginx_$(BASE_VERSION).orig.tar.gz
-MODULE_PACKAGE_URL=	https://nginx.org/
+BASE_ORIG_NAME=freenginx_$(BASE_VERSION).orig.tar.gz
+MODULE_PACKAGE_URL=	https://freenginx.org/
 endif
 
-MODULE_PACKAGE_PREFIX=nginx$(MODULE_SUFFIX)-module
+MODULE_PACKAGE_PREFIX=freenginx$(MODULE_SUFFIX)-module
 MODULE_TARGET_PREFIX=$(TARGET_VERSION)+
 
-PACKAGE_VENDOR=	NGINX Packaging <nginx-packaging@f5.com>
+PACKAGE_VENDOR=	freenginx packaging <packaging@freenginx.org>
 
 CODENAME=	$(shell lsb_release -cs)
 ARCH=		$(shell uname -m)
@@ -48,11 +48,12 @@ NPROC=		$(shell getconf _NPROCESSORS_ONLN)
 MODSRC_PREFIX=	extra/
 BUILD_DIR=	$$(BUILDDIR_nginx)
 
-BASE_MODULES=	acme geoip image-filter njs otel perl xslt
+#BASE_MODULES=	acme geoip image-filter njs otel perl xslt
+BASE_MODULES=	geoip image-filter njs perl xslt
 
 MODULES=
 
--include Makefile.module-*
+#-include Makefile.module-*
 
 BASE_CONFIGURE_ARGS=\
 	--prefix=/etc/nginx \
@@ -121,7 +122,7 @@ default:
 	@echo "valid targets: all base $(addprefix module-, $(MODULES)) check-modules test test-debug"
 
 list-base:
-	@printf "%-20s\t%s\n" nginx $(BASE_VERSION)-$(BASE_RELEASE)
+	@printf "%-20s\t%s\n" freenginx $(BASE_VERSION)-$(BASE_RELEASE)
 
 list-module-%:
 	@printf "%-20s\t%s\n" $* $(MODULE_VERSION_$(call modname, $*))-$(MODULE_RELEASE_$(call modname, $*))
@@ -151,11 +152,11 @@ $(BASE_SRC):
 	cd $(CONTRIB) && make .sum-nginx$(BASE_SUFFIX)
 	ln -s $(CONTRIB)/tarballs/$(BASE_SRC) $(BASE_SRC)
 
-nginx.deb-changelog:
+freenginx.deb-changelog:
 	@echo "===> Generating $@"
-	@cd $(DOCS) && DEST=$(CURDIR) VERSIONMASK=1 make $(CURDIR)/nginx$(BASE_SUFFIX).deb-changelog
+	@cd $(DOCS) && DEST=$(CURDIR) VERSIONMASK=1 make $(CURDIR)/freenginx$(BASE_SUFFIX).deb-changelog
 
-rules-base: $(BASE_SRC) nginx.deb-changelog
+rules-base: $(BASE_SRC) freenginx.deb-changelog
 	@echo "===> Creating $@"
 	@{ \
 	set -e ; \
@@ -176,7 +177,7 @@ rules-base: $(BASE_SRC) nginx.deb-changelog
 		-e 's#%%CODENAME%%#$(CODENAME)#g' \
 		-e 's#%%BASE_CONFIGURE_ARGS%%#$(BASE_CONFIGURE_ARGS)#g' \
 		> debuild-base/$(SRCDIR)/debian/rules ; \
-	sed nginx$(BASE_SUFFIX).deb-changelog \
+	sed freenginx$(BASE_SUFFIX).deb-changelog \
 		-e 's#%%CODENAME%%#$(CODENAME)#g' \
 		-e 's#%%BASE_VERSION%%#$(BASE_VERSION)#g' \
 		-e 's#%%BASE_RELEASE%%#$(BASE_RELEASE)#g' \
@@ -463,7 +464,7 @@ check-modules:
 
 clean:
 	@rm -rf base module-* rules-base rules-module-* debuild-base debuild-module-* nginx-tests $(BASE_SRC) .deps-module-*
-	@rm -f nginx.deb-changelog nginx-*.deb-changelog nginx-module-*.deb-changelog nginx-module-*.skip
+	@rm -f freenginx.deb-changelog freenginx-*.deb-changelog freenginx-module-*.deb-changelog freenginx-module-*.skip
 	@rm -f attest-base attest-module-*
 
 .PHONY:	default list list-base list-all-modules list-base-modules all modules rules test test-debug check-modules clean

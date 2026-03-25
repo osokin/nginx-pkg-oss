@@ -6,23 +6,23 @@ CONTRIB?=	../contrib
 CONTRIB:=	$(abspath $(CONTRIB))
 XSLS?=	$(CONTRIB)/xslscript/xslscript.pl
 
-PACKAGES=	nginx							\
-		nginx-module-auth-spnego				\
-		nginx-module-brotli					\
-		nginx-module-encrypted-session				\
-		nginx-module-geoip					\
-		nginx-module-geoip2					\
-		nginx-module-headers-more				\
-		nginx-module-image-filter				\
-		nginx-module-lua					\
-		nginx-module-ndk					\
-		nginx-module-njs					\
-		nginx-module-passenger					\
-		nginx-module-perl					\
-		nginx-module-rtmp					\
-		nginx-module-set-misc					\
-		nginx-module-subs-filter				\
-		nginx-module-xslt
+PACKAGES=	freenginx						\
+		freenginx-module-auth-spnego				\
+		freenginx-module-brotli					\
+		freenginx-module-encrypted-session			\
+		freenginx-module-geoip					\
+		freenginx-module-geoip2					\
+		freenginx-module-headers-more				\
+		freenginx-module-image-filter				\
+		freenginx-module-lua					\
+		freenginx-module-ndk					\
+		freenginx-module-njs					\
+		freenginx-module-passenger				\
+		freenginx-module-perl					\
+		freenginx-module-rtmp					\
+		freenginx-module-set-misc				\
+		freenginx-module-subs-filter				\
+		freenginx-module-xslt
 
 all:		changes changelogs
 
@@ -35,15 +35,15 @@ $(XSLS):
 	cd $(CONTRIB) && make .xslscript
 
 $(DEST)/CHANGES:		changes.dtd				\
-				nginx.xml				\
+				freenginx.xml				\
 				change_log_conf.xml			\
 				changes.xslt
 
 	mkdir -p $(DEST)
 
-	xmllint --noout --valid nginx.xml
+	xmllint --noout --valid freenginx.xml
 	xsltproc --stringparam format generic				\
-		-o $@ changes.xslt nginx.xml
+		-o $@ changes.xslt freenginx.xml
 
 $(DEST)/%.rpm-changelog:	changes.dtd 				\
 				%.xml 				\

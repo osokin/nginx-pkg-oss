@@ -2,7 +2,19 @@
 <!DOCTYPE change_log SYSTEM "changes.dtd" >
 
 
-<change_log title="nginx">
+<change_log title="freenginx">
+
+
+<changes apply="freenginx" ver="1.29.6" rev="1"
+         date="2026-03-24" time="17:36:44 -0400"
+         packager="freenginx packaging &lt;packaging@nginx.org&gt;">
+<change>
+<para>
+1.29.6-1
+</para>
+</change>
+
+</changes>
 
 
 <changes apply="nginx" ver="1.29.6" rev="1"

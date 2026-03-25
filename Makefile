@@ -21,9 +21,9 @@ RELEASE?=	1
 VERSION_NJS?= $(shell curl -Lfs https://github.com/nginx/njs/raw/master/src/njs.h | fgrep -m 1 'define NJS_VERSION' | cut -d '"' -f 2)
 RELEASE_NJS?= 1
 
-PACKAGER?=	Nginx Packaging <nginx-packaging@f5.com>
+PACKAGER?=	freenginx packaging <packaging@freenginx.org>
 
-TARBALL?=	https://nginx.org/download/nginx-$(VERSION).tar.gz
+TARBALL?=	https://freenginx.org/download/freenginx-$(VERSION).tar.gz
 
 TARBALL_NJS?=	https://github.com/nginx/njs/archive/refs/tags/${VERSION_NJS}.tar.gz
 

@@ -1,4 +1,4 @@
-Source: nginx
+Source: freenginx
 Section: httpd
 Priority: optional
 Maintainer: %%PACKAGE_VENDOR%%
@@ -10,9 +10,9 @@ Build-Depends: debhelper (>= 11),
                libpcre2-dev,
                zlib1g-dev
 Standards-Version: 4.1.4
-Homepage: https://nginx.org
+Homepage: https://freenginx.org
 
-Package: nginx
+Package: freenginx
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, lsb-base (>= 3.0-6)
 Provides: httpd, nginx, nginx-r%%BASE_VERSION%%
@@ -20,13 +20,13 @@ Conflicts: nginx-common, nginx-core
 Replaces: nginx-common, nginx-core
 Recommends: logrotate
 Description: high performance web server
- nginx [engine x] is an HTTP and reverse proxy server, as well as
- a mail proxy server.
+ freenginx [friengine x] is an HTTP and reverse proxy server,
+ as well as a mail proxy server.
 
-Package: nginx-dbg
+Package: freenginx-dbg
 Architecture: any
 Section: debug
 Priority: optional
-Depends: ${misc:Depends}, nginx (= ${binary:Version})
-Description: nginx debug symbols
- This package contains the debugging symbols for nginx.
+Depends: ${misc:Depends}, freenginx (= ${binary:Version})
+Description: freenginx debug symbols
+ This package contains the debugging symbols for freenginx.

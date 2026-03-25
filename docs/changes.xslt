@@ -4,7 +4,7 @@
 <xsl:output method="text"/>
 
 <xsl:param select="'generic'" name="format"/>
-<xsl:param select="'nginx'" name="pkgname"/>
+<xsl:param select="'freenginx'" name="pkgname"/>
 <xsl:param select="'0'" name="versionmask"/>
 <xsl:param select="'change_log_conf.xml'" name="configuration"/>
 
@@ -75,16 +75,16 @@
 
     <xsl:variable name="ver_t">
         <xsl:choose>
-            <xsl:when test="position()=1 and $versionmask='1' and $pkgname='nginx'">%%BASE_VERSION%%</xsl:when>
-            <xsl:when test="position()=1 and $versionmask='1' and $pkgname!='nginx'">%%MODULE_VERSION%%</xsl:when>
+            <xsl:when test="position()=1 and $versionmask='1' and $pkgname='freenginx'">%%BASE_VERSION%%</xsl:when>
+            <xsl:when test="position()=1 and $versionmask='1' and $pkgname!='freenginx'">%%MODULE_VERSION%%</xsl:when>
             <xsl:otherwise> <xsl:value-of select="@ver"/> </xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
 
     <xsl:variable name="rev_t">
         <xsl:choose>
-            <xsl:when test="position()=1 and $versionmask='1' and $pkgname='nginx'">%%BASE_RELEASE%%</xsl:when>
-            <xsl:when test="position()=1 and $versionmask='1' and $pkgname!='nginx'">%%MODULE_RELEASE%%</xsl:when>
+            <xsl:when test="position()=1 and $versionmask='1' and $pkgname='freenginx'">%%BASE_RELEASE%%</xsl:when>
+            <xsl:when test="position()=1 and $versionmask='1' and $pkgname!='freenginx'">%%MODULE_RELEASE%%</xsl:when>
             <xsl:otherwise> <xsl:value-of select="@rev"/> </xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
@@ -102,7 +102,7 @@
     </xsl:variable>
 
     <xsl:choose>
-    <xsl:when test="$pkgname='nginx' and $format='generic' and @rev!=1"/>
+    <xsl:when test="$pkgname='freenginx' and $format='generic' and @rev!=1"/>
     <xsl:otherwise>
     <xsl:if test="$apply=$pkgname">
 
