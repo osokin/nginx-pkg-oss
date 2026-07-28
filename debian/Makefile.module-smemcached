@@ -1,0 +1,43 @@
+MODULES+=       smemcached
+
+MODULE_SUMMARY_smemcached=   3rd-party http_smemcached dynamic module
+
+MODULE_CONTRIB_DEPS_smemcached=      ngx_http_smemcached
+
+include $(foreach dep,$(MODULE_CONTRIB_DEPS_smemcached),$(CONTRIB)/src/$(dep)/version)
+
+MODULE_VERSION_smemcached=   $(NGX_HTTP_SMEMCACHED_VERSION)
+MODULE_RELEASE_smemcached=   1
+
+MODULE_VERSION_PREFIX_smemcached=$(MODULE_TARGET_PREFIX)
+
+MODULE_SOURCES_smemcached=   ngx_http_smemcached-$(NGX_HTTP_SMEMCACHED_VERSION).tar.gz
+
+MODULE_CONFARGS_smemcached=  --add-dynamic-module=$(MODSRC_PREFIX)ngx_http_smemcached-$(NGX_HTTP_SMEMCACHED_VERSION)
+
+MODULE_CC_OPT_smemcached=-DSMEMCACHED_SET_VAR -DSMEMCACHED_UPSTREAM_LIST
+MODULE_CC_OPT_DEBUG_smemcached=$(MODULE_CC_OPT_smemcached)
+
+ifeq ($(MODULE_TARGET), plus)
+SMEMCACHED_DEPENDENCY_TAG=   nginx-plus-module-smemcached-r$(PLUS_VERSION)
+else
+SMEMCACHED_DEPENDENCY_TAG=   nginx-module-smemcached-r$(BASE_VERSION)
+endif
+
+define MODULE_POST_smemcached
+cat <<BANNER
+----------------------------------------------------------------------
+
+The $(MODULE_SUMMARY_smemcached) for $(MODULE_SUMMARY_PREFIX) has been installed.
+To enable this module, add the following to /etc/nginx/nginx.conf
+and reload nginx:
+
+    load_module modules/ngx_http_smemcached_module.so;
+
+Please refer to the module documentation for further details:
+https://github.com/osokin/ngx_http_smemcached
+
+----------------------------------------------------------------------
+BANNER
+endef
+export MODULE_POST_smemcached

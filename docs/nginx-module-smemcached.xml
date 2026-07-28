@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!DOCTYPE change_log SYSTEM "changes.dtd" >
+
+
+<change_log title="nginx_module_redis">
+
+
+<changes apply="nginx-module-smemcached" ver="1.0.0" rev="1" basever="1.29.6"
+         date="2026-07-28" time="12:00:00 -0500"
+         packager="tipi.work &lt;support@tipi.work&gt;">
+
+<change>
+<para>
+Initial release of ngx_http_smemcached module package.
+</para>
+</change>
+
+</changes>
+
+
+</change_log>
